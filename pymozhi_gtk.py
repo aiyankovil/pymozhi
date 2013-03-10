@@ -7,7 +7,7 @@ import os.path
 #textbuffer.place_cursor(where)
 #textview.set_wrap_mode(gtk.WRAP_WORD)
 class Base:
-  def __init__(self):
+	def __init__(self):
 		self.cur_filename=''
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("destroy", self.destroy)
@@ -16,7 +16,7 @@ class Base:
 		self.window.set_size_request(600, 400)
 		
 		#-----------------------------------#
-		#					file Selection window			#
+		#	file Selection window			#
 		#-----------------------------------#
 		self.filew = gtk.FileSelection("File selection")
 		self.filew.ok_button.connect("clicked", self.file_ok_sel)
@@ -27,7 +27,7 @@ class Base:
 		box=gtk.VBox(False,0)
 		
 		#--------------------------#
-		#					menu bar				 #
+		#  	menu bar			   #
 		#--------------------------#	
 		menubar = self.get_main_menu()
 		box.pack_start(menubar, False, True, 0)
@@ -36,7 +36,7 @@ class Base:
 		
 		
 		#--------------------------#
-		#					Toolbar					 #
+		#	Toolbar			  	 #
 		#--------------------------#
 		handlebox = gtk.HandleBox()
 		box.pack_start(handlebox, False, False, 5)
@@ -67,11 +67,11 @@ class Base:
 		#-----------------------------------#
 		
 				
-		#--------------------------#
-		#					TextView				 #
+		#----------------------------#
+		#		TextView			 #
 		# to show the translated 	 #
-		# malayalam text					 #
-		#--------------------------#
+		# malayalam text			 #
+		#----------------------------#
 		sw_mal = gtk.ScrolledWindow()
 		sw_mal.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 		self.textmal = gtk.TextView()
@@ -94,11 +94,11 @@ class Base:
 		seperator.show()
 		
 		
-		#--------------------------#
-		#					TextView				 #
-		# for the input of				 # 
-		# manglish text 	 				 #
-		#--------------------------#
+		#----------------------------#
+		#		TextView			 #
+		# for the input of			 # 
+		# manglish text 			 #
+		#----------------------------#
 		sw = gtk.ScrolledWindow()
 		sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 		self.texteng = gtk.TextView()
@@ -120,12 +120,12 @@ class Base:
 		self.window.show()
 	
 	#--------------------------------#
-	#						menubar	Object			 #
-	#--------------------------------#	
+	#		menubar	Object			 #
+	#--------------------------------#
 	def get_main_menu(self):
 		menu_items = (
-					( "/_File",         None,         None, 0, "<Branch>" ),
-   				( "/File/_New",     "<control>N", self.menuitem_response, 0, None ),
+			( "/_File",         None,         None, 0, "<Branch>" ),
+   			( "/File/_New",     "<control>N", self.menuitem_response, 0, None ),
           ( "/File/_Open",    "<control>O", self.menuitem_response, 0, None ),
           ( "/File/_Save",    "<control>S", self.menuitem_response, 0, None ),
           ( "/File/Save _As", None,         None, 0, None ),
@@ -135,7 +135,7 @@ class Base:
           ( "/Options/Test",  None,         None, 0, None ),
           ( "/_Help",         None,         None, 0, "<LastBranch>" ),
           ( "/_Help/About",   None,         None, 0, None ),
-    )
+    	)
 		accel_group = gtk.AccelGroup()
 		self.item_factory = gtk.ItemFactory(gtk.MenuBar, "<main>", accel_group)
 		# This method generates the menu items. Pass to the item factory
