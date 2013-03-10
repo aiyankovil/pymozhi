@@ -4,7 +4,7 @@ from Tkinter import *
 
 def transword(wd):
     dict_trans=patterns.getDictTrans()
-    pattern=patterns.getPat()    
+    pattern=patterns.getPat()
     result=[]
     while len(wd)>0:
         M=re.match(pattern,wd)
@@ -54,9 +54,9 @@ class MyApp:
         # inside bottom_frame we create a textbox         
         self.mal_text = Text(self.bottom_frame)
         self.mal_text.pack()
-            
+    
     def translate(self,event):
-        if str(event.keysym)=='space':            
+        if str(event.keysym)=='space':
             mang = str(self.eng_text.get(0.0, END))
             str_res=''
             for w in mang.split(' '):
