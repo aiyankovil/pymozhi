@@ -65,7 +65,7 @@ class MyApp:
             
             self.mal_text.delete(0.0, END)
             self.mal_text.insert(0.0, str_res)
-
+#just a git bash test
 root = Tk()
 myapp = MyApp(root)
 root.mainloop()
