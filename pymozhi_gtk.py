@@ -16,18 +16,18 @@ class Base:
 		self.window.set_size_request(600, 400)
 		
 		#-----------------------------------#
-		#	file Selection window			#
+		#					file Selection window			#
 		#-----------------------------------#
 		self.filew = gtk.FileSelection("File selection")
-		self.filew.ok_button.connect("clicked", self.file_ok_sel)
+		self.filew.ok_button.connect("clicked", self.save_dialog_ok_click)
 		self.filew.cancel_button.connect("clicked",lambda w: self.filew.destroy())
-		self.filew.set_filename("mozhi.txt")
+		self.filew.set_filename("mozhi.moz")
 		#-----------------------------------#
 		
 		box=gtk.VBox(False,0)
 		
 		#--------------------------#
-		#  	menu bar			   #
+		#					menu bar				 #
 		#--------------------------#	
 		menubar = self.get_main_menu()
 		box.pack_start(menubar, False, True, 0)
@@ -36,7 +36,7 @@ class Base:
 		
 		
 		#--------------------------#
-		#	Toolbar			  	 #
+		#					Toolbar					 #
 		#--------------------------#
 		handlebox = gtk.HandleBox()
 		box.pack_start(handlebox, False, False, 5)
@@ -67,11 +67,11 @@ class Base:
 		#-----------------------------------#
 		
 				
-		#----------------------------#
-		#		TextView			 #
+		#--------------------------#
+		#					TextView				 #
 		# to show the translated 	 #
-		# malayalam text			 #
-		#----------------------------#
+		# malayalam text					 #
+		#--------------------------#
 		sw_mal = gtk.ScrolledWindow()
 		sw_mal.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 		self.textmal = gtk.TextView()
@@ -94,11 +94,11 @@ class Base:
 		seperator.show()
 		
 		
-		#----------------------------#
-		#		TextView			 #
-		# for the input of			 # 
-		# manglish text 			 #
-		#----------------------------#
+		#--------------------------#
+		#					TextView				 #
+		# for the input of				 # 
+		# manglish text 	 				 #
+		#--------------------------#
 		sw = gtk.ScrolledWindow()
 		sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 		self.texteng = gtk.TextView()
@@ -120,22 +120,21 @@ class Base:
 		self.window.show()
 	
 	#--------------------------------#
-	#		menubar	Object			 #
-	#--------------------------------#
+	#						menubar	Object			 #
+	#--------------------------------#	
 	def get_main_menu(self):
 		menu_items = (
-			( "/_File",         None,         None, 0, "<Branch>" ),
-   			( "/File/_New",     "<control>N", self.menuitem_response, 0, None ),
-          ( "/File/_Open",    "<control>O", self.menuitem_response, 0, None ),
+					( "/_File",         None,         None, 0, "<Branch>" ),
+   				( "/File/_New",     "<control>N", self.menuitem_response, 0, None ),
           ( "/File/_Save",    "<control>S", self.menuitem_response, 0, None ),
-          ( "/File/Save _As", None,         None, 0, None ),
+          ( "/File/Save _As", "<control>A", self.menuitem_response, 0, None ),
           ( "/File/sep1",     None,         None, 0, "<Separator>" ),
           ( "/File/Quit",     "<control>Q", self.destroy, 0, None ),
           ( "/_Options",      None,         None, 0, "<Branch>" ),
           ( "/Options/Test",  None,         None, 0, None ),
           ( "/_Help",         None,         None, 0, "<LastBranch>" ),
-          ( "/_Help/About",   None,         None, 0, None ),
-    	)
+          ( "/_Help/About",   None,         self.menuitem_response, 0, None ),
+    )
 		accel_group = gtk.AccelGroup()
 		self.item_factory = gtk.ItemFactory(gtk.MenuBar, "<main>", accel_group)
 		# This method generates the menu items. Pass to the item factory
@@ -147,21 +146,30 @@ class Base:
 	def menuitem_response(self, widget, string):
 		name=string.get_label()
 		if name=='_Save': self.save_trans()
+		elif name=='Save _As': self.filew.show()
+		elif name=='About': print 'copyright (C) by suhail'
 	
 	def save_trans(self,*args):
-		self.filew.show()
+		if self.cur_filename=='':
+			self.filew.show()
+		else:
+			self.save_manglish()
+		
   #-------------------------------#
 
-	def file_ok_sel(self,w):
-		fname=self.filew.get_filename()
-		if os.path.lexists(self.filew.get_filename()):
-			print 'file already exists'
+	def save_dialog_ok_click(self,w):
+		self.cur_filename=self.filew.get_filename()
+		if os.path.lexists(self.cur_filename):
+			print 'file already exists'#ok dialog
 		else:
-			fp=open(fname,'w')
-  		st, end = self.textmalbuffer.get_bounds()
-  		fp.write(self.textmalbuffer.get_text(st,end))
-  		fp.close()
-  		self.filew.destroy()
+			self.save_manglish()
+			#self.filew.destroy()
+	
+	def save_manglish(self):
+		fp=open(self.cur_filename,'w')
+		st, end = self.textmalbuffer.get_bounds()
+		fp.write(self.textmalbuffer.get_text(st,end))
+		fp.close()
   		
 	def destroy(self, widget, data=None):
 		print "going to desctory"
@@ -171,8 +179,7 @@ class Base:
 		adj=self.sw_mal.get_vadjustment()#print dir(gtk)
 		val=adj.upper-adj.page_size
 		adj.set_value(val)
-		#print d.type
-		
+	
 		
 	def txt_keypress(self, widget, data=None):
 		st, end = self.textengbuffer.get_bounds()
@@ -182,13 +189,6 @@ class Base:
 			str_res+= patterns.transword(w+' ')# + ' '			
 		self.textmalbuffer.set_text(str_res.replace('|',''))
 		self.move_maltxt_scrollbar()
-		#self.sw_mal.set_vadjustment(adj)
-		#adj.set_value(val)
-		#print adj.upper-(adj.value+adj.page_size)
-		#print adj.upper,adj.page_size
-		#print help(self.mal_scroll_window.set_vadjustment)
-		#self.textmal.scroll_to_iter(self.textmalbuffer.get_end_iter())
-		
 		
 	def main(self):
 		gtk.main()

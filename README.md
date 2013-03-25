@@ -14,7 +14,7 @@ pyMozhi is capable of converting 'Manglish' (Phonetic English-Malayalam
 or Anglicized malayalam) into Malayalam in unicode font using 
 a transliteration scheme. After downloading the above zip 
 file, use Winzip/PKUNZIP to extract the three files to a directory 
-of your choice.  
+of your choice. 
 
 How to run the program
 ======================
