@@ -126,7 +126,7 @@ def combine_dicts(d1,d2):
 def getPat():
 	p1='(kh?|gh?|nn?g|NN|nn|ll|LL|ch?h?|jh?|nj|th?h?|Th?|dh?|Dh?|Nd?|n|ph?|f|bh?|y|r|l|v|S|sh|s|h|L|zh|R|m?)'
 	p2='(aa|A|i|ee|um\s|u|oo|R~|e|E|ai|I|o|O|au|am|a?)'
-	
+	#just some testsss
 	pat='^'+p1+p2
 	return pat
 	
