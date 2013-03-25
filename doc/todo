@@ -1,0 +1,22 @@
+-- setfocus for texteng											done
+
+-- text translate on keypress 							done
+-- | to stop continution example nivarumo		done
+-- toolbar
+-- edit patterns.py	(add '|' to end letter) eg:- kuSu|mpu,nivaru|mo
+(how to put space in re.pattern matching) 		done
+
+-- on moving english text scrollbar move also malayalam--almost done
+-- edit toolbar and menubar
+-- edit patterns.py and add more letters available
+create a story-kutumba maadyamam
+--------------------------------
+matuLLavaruTe snEhavum a|amgeekaaravum labhikkaNa|mennaagrahikkunnavaraaN~ pothuvil manushyar.
+Sariyaaya reethiyil snEhavum a|amgeekaaravum kiTTunnavarkk nalla Saareerika maanasika
+aarOgyam kaNdu varunnu.
+
+matuLLavaruTe Sraddha piTichchupatuka ennath manushyasahaja|maaN~. 
+pothuve raNdu tharam reethikaL ithin~ avalambikkunnathaayi manassilaakkaa|am. nallath
+cheyth Sraddha nETuka athhavaa snEham piTichchupatuka, matonn anngane nallath cheyyaan
+saadhikkillenna manObhaavaththaalO anngane cheyyaanuLLa kazhivO thantE Ta|mO 
+illaathirikku|mpOzhO mOSa|maaya cheythikaLilooTe Sraddha nETuka athhavaa snE
