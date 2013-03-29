@@ -56,4 +56,4 @@ editing.
 Notes: fork us on git hub
 =========================
 
-we need your help so please forkus on github (http://www.github.com/suhailvs/pymozhi)
+we need your help so please forkus on github (http://www.github.com/suhailvs/pymozhi). github.com/zuhail
